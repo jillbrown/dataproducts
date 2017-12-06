@@ -1,0 +1,30 @@
+---
+title: "Data Products"
+author: "Jill A Brown"
+date: "December 5, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Leaflet Test
+
+```{r leaflet}
+library(leaflet)
+
+dmv_military <- data.frame(name = c("Fort Meade", "Fort Belvoir", "Andrews Air Field", "Langley-Eustis", "Fort Detrick", "Fort McNair", "Walter Reed", "Pentagon", "Quantico"),
+                        branch = c("Army", "Army", "Navy", "Air Force", "Army",
+                                "Army", "Navy", "Multiple", "Marines"),
+                        lat = c(39.097917, 38.699473, 38.810623, 37.092340, 39.436272, 38.866386, 39.006258, 38.872116, 38.525726),
+                        lng = c(-76.729423, -77.154812, -76.893100, -76.360021, -77.428929, -77.014524, -77.092956, -77.056310, -77.289753))
+
+dmv_military %>%
+  leaflet() %>%
+  addTiles %>%
+  addCircleMarkers(color = dmv_military$branch) %>%
+  addLegend(labels = dmv_military$branch, colors = c("green", "green", "navy", "blue", "green", "green", "navy", "red", "black"))
+
+```
+
